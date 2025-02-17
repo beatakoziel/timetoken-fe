@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
     TouchableWithoutFeedback,
-    View
+    View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import SliderIntro, { type SliderIntroItemProps } from "react-native-slider-intro";
@@ -18,6 +18,12 @@ const slides: SliderIntroItemProps[] = [
     { index: 2, backgroundColor: "#C1E1C1" },
     { index: 3, backgroundColor: "#A7C7E7" },
 ];
+
+const projectData = {
+    name: "Project Apollo",
+    progress: 0.65,
+    deadline: "2020-05-01",
+};
 
 export default function Index() {
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -39,7 +45,21 @@ export default function Index() {
                         >
                             <View style={[styles.slide, { backgroundColor }]}>
                                 <View style={styles.card}>
-                                    <Text style={styles.text}>Click me {index}</Text>
+                                    <Text style={styles.projectName}>{projectData.name}</Text>
+
+                                    <View style={styles.progressBarContainer}>
+                                        <Text style={styles.progressLabel}>Progress</Text>
+                                        <View style={styles.progressBar}>
+                                            <View
+                                                style={[
+                                                    styles.progressFill,
+                                                    { width: `${projectData.progress * 100}%` },
+                                                ]}
+                                            />
+                                        </View>
+                                    </View>
+
+                                    <Text style={styles.deadline}>Deadline: {projectData.deadline}</Text>
                                 </View>
                             </View>
                         </TouchableWithoutFeedback>
@@ -73,19 +93,46 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         justifyContent: "center",
         alignItems: "center",
+        padding: 20,
     },
-    text: {
+    projectName: {
+        fontSize: 24,
+        fontWeight: "700",
+        color: "#333333",
+        marginBottom: 15,
+    },
+    progressBarContainer: {
+        width: "100%",
+        marginBottom: 15,
+        alignItems: "center",
+    },
+    progressLabel: {
+        fontSize: 14,
+        fontWeight: "500",
+        color: "#555555",
+    },
+    progressBar: {
+        width: "80%",
+        height: 10,
+        backgroundColor: "#E0E0E0",
+        borderRadius: 5,
+        overflow: "hidden",
+    },
+    progressFill: {
+        height: "100%",
+        backgroundColor: "#76C7C0",
+    },
+    deadline: {
         fontSize: 16,
-        fontWeight: "600",
-        color: "#5D5C61"
+        fontWeight: "400",
+        color: "#555555",
     },
     sectionBlue: {
         flex: 4,
-        backgroundColor: "#A7C7E7"
+        backgroundColor: "#A7C7E7",
     },
     sectionMint: {
         flex: 4,
-        backgroundColor: "#C1E1C1"
+        backgroundColor: "#C1E1C1",
     },
 });
-
