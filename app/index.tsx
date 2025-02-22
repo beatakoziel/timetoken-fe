@@ -10,13 +10,15 @@ import { useNavigation } from "@react-navigation/core";
 import SliderIntro, { type SliderIntroItemProps } from "react-native-slider-intro";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "@/App";
+import RecentTasksSection from "./components/RecentTasksSection";
+import Colors from "./utils/Colors";
 
 const { width } = Dimensions.get("window");
 
 const slides: SliderIntroItemProps[] = [
-    { index: 1, backgroundColor: "#FFDDC1" },
-    { index: 2, backgroundColor: "#C1E1C1" },
-    { index: 3, backgroundColor: "#A7C7E7" },
+    { index: 1, backgroundColor: Colors.primaryColor },
+    { index: 2, backgroundColor: Colors.primaryColor },
+    { index: 3, backgroundColor: Colors.primaryColor },
 ];
 
 const projectData = {
@@ -66,8 +68,8 @@ export default function Index() {
                     ))}
                 </SliderIntro>
             </View>
-            <View style={styles.sectionBlue} />
-            <View style={styles.sectionMint} />
+            <RecentTasksSection style={styles.sectionBlue}/>
+                
         </View>
     );
 }
@@ -80,7 +82,6 @@ const styles = StyleSheet.create({
     },
     sliderContainer: {
         flex: 5,
-        backgroundColor: "#F8E8EE",
     },
     slide: {
         width: width,
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     card: {
         width: width * 0.95,
         margin: "auto",
-        backgroundColor: "#F4F1DE",
+        backgroundColor: Colors.secondaryColor,
         height: "90%",
         borderRadius: 30,
         justifyContent: "center",
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     projectName: {
         fontSize: 24,
         fontWeight: "700",
-        color: "#333333",
+        color: Colors.primaryText,
         marginBottom: 15,
     },
     progressBarContainer: {
@@ -109,30 +110,26 @@ const styles = StyleSheet.create({
     progressLabel: {
         fontSize: 14,
         fontWeight: "500",
-        color: "#555555",
+        color: Colors.secondaryText,
     },
     progressBar: {
         width: "80%",
         height: 10,
-        backgroundColor: "#E0E0E0",
+        backgroundColor: Colors.primaryColor,
         borderRadius: 5,
         overflow: "hidden",
     },
     progressFill: {
         height: "100%",
-        backgroundColor: "#76C7C0",
+        backgroundColor: Colors.primaryAccent,
     },
     deadline: {
         fontSize: 16,
         fontWeight: "400",
-        color: "#555555",
+        color: Colors.secondaryText,
     },
     sectionBlue: {
-        flex: 4,
-        backgroundColor: "#A7C7E7",
-    },
-    sectionMint: {
-        flex: 4,
-        backgroundColor: "#C1E1C1",
-    },
+        flex: 8,
+        backgroundColor: Colors.primaryColor,
+    }
 });
